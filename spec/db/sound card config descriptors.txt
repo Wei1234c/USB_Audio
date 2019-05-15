@@ -1,0 +1,478 @@
+##################################
+[9, 2, 253, 0, 4, 1, 0, 128, 50]
+descriptors[0] = "Configuration Descriptor" 
+bLength = 9 
+bDescriptorType = USB_CONFIGURATION_DESCRIPTOR_TYPE (2) 
+wTotalLength = 253 
+bNumInterfaces = 4 
+bConfigurationValue = 1 
+iConfiguration = 0 
+Reserved = 0 
+SupportsRemoteWakeup = 0 
+SelfPowered = 0 
+PoweredByBus = 1 
+MaxPower = 0x32 -> 100 mA 
+
+##################################
+[9, 4, 0, 0, 0, 1, 1, 0, 0]
+descriptors[1] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 0 
+bAlternateSetting = 0 
+bNumEndpoints = 0 
+bInterfaceClass = UsbAudio (1) 
+bInterfaceSubClass = AudioControl(1) 
+bInterfaceProtocol = 0 
+iInterface = 0 
+
+
+##################################
+[10, 36, 1, 0, 1, 100, 0, 2, 1, 2]
+descriptors[2] = "Class-Specific Interface Descriptor" 
+bLength = 10 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = HEADER(1)
+ac_interface =  
+	header =  
+		bcdADC = 256 
+		bCategory = 100 
+		wTotalLength = 512 
+		controls =  
+			header =  
+				LatencyControl = 1 
+				Reserved = 0 
+			bmControls = 00000001 
+unknown =  2  
+
+
+##################################
+[12, 36, 2, 1, 1, 1, 0, 2, 3, 0, 0, 0]
+descriptors[3] = "Class-Specific Interface Descriptor" 
+bLength = 12 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = INPUT_TERMINAL(2)
+ac_interface =  
+	input_terminal =  
+		bTerminalID = 1 
+		wTerminalType = USB streaming(257)
+		bAssocTerminal = 0 
+		bCSourceID = 2 
+		bNrChannels = 3 
+		bmChannelConfig = 201326592 
+		iChannelNames = 36 
+		terminal_control =  
+			terminal =  
+				CopyProtect = 2 
+				ConnectorControl = 0 
+				OverloadControl = 0 
+				ClusterControl = 0 
+				UnderflowControl = 0 
+				OverflowControl = 1 
+				Reserved = 0 
+			bmControls = 0000010000000010 
+		iTerminal = 1 
+
+
+##################################
+[12, 36, 2, 4, 1, 2, 0, 1, 1, 0, 0, 0]
+descriptors[4] = "Class-Specific Interface Descriptor" 
+bLength = 12 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = INPUT_TERMINAL(2)
+ac_interface =  
+	input_terminal =  
+		bTerminalID = 4 
+		wTerminalType = Microphone(513) 
+		bAssocTerminal = 0 
+		bCSourceID = 1 
+		bNrChannels = 1 
+		bmChannelConfig = 150994944 
+		iChannelNames = 36 
+		terminal_control =  
+			terminal =  
+				CopyProtect = 3 
+				ConnectorControl = 0 
+				OverloadControl = 0 
+				ClusterControl = 0 
+				UnderflowControl = 3 
+				OverflowControl = 0 
+				Reserved = 0 
+			bmControls = 0000001100000011 
+		iTerminal = 1 
+
+
+##################################
+[9, 36, 3, 3, 1, 3, 0, 6, 0]
+descriptors[5] = "Class-Specific Interface Descriptor" 
+bLength = 9 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = OUTPUT_TERMINAL(3)
+ac_interface =  
+	output_terminal =  
+		bTerminalID = 3 
+		wTerminalType = Speaker(769) 
+		bAssocTerminal = 0 
+		bSourceID = 6 
+		bCSourceID = 0 
+		bmChannelConfig = 33760265 
+		iChannelNames = 1 
+		bmControls = 1 
+		terminal_control =  
+			terminal =  
+				CopyProtect = 1 
+				ConnectorControl = 2 
+				OverloadControl = 0 
+				ClusterControl = 0 
+				UnderflowControl = 0 
+				OverflowControl = 0 
+				Reserved = 0 
+			bmControls = 0000000000001001 
+		iTerminal = 7 
+
+
+##################################
+[9, 36, 3, 2, 1, 1, 0, 9, 0]
+descriptors[6] = "Class-Specific Interface Descriptor" 
+bLength = 9 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = 3 
+ac_interface =  
+	output_terminal =  
+		bTerminalID = 2 
+		wTerminalType = USB streaming(257) 
+		bAssocTerminal = 0 
+		bSourceID = 9 
+		bCSourceID = 0 
+		bmChannelConfig = 151331847 
+		iChannelNames = 1 
+		bmControls = 5 
+		terminal_control =  
+			terminal =  
+				CopyProtect = 2 
+				ConnectorControl = 2 
+				OverloadControl = 0 
+				ClusterControl = 0 
+				UnderflowControl = 0 
+				OverflowControl = 1 
+				Reserved = 2 
+			bmControls = 0010010000001010 
+		iTerminal = 6 
+
+
+##################################
+[7, 36, 5, 9, 1, 5, 0]
+descriptors[7] = "Class-Specific Interface Descriptor" 
+bLength = 7 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = SELECTOR_UNIT(5) 
+ac_interface =  
+	selector_unit =  
+		bUnitID = 9 
+		bNrInPins = 1 
+		baSourceID =  5  
+		bmControls = 0 
+		iSelector = 10 
+
+
+##################################
+[10, 36, 6, 6, 8, 1, 1, 2, 2, 0]
+descriptors[8] = "Class-Specific Interface Descriptor" 
+bLength = 10 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = FEATURE_UNIT(6) 
+ac_interface =  
+	feature_unit =  
+		bUnitID = 6 
+		bSourceID = 8 
+		controls =  
+			controls[0] =  
+				feature =  
+					MuteControl = 1 
+					VolumeControl = 0 
+					BassControl = 0 
+					MidControl = 0 
+					TrebleControl = 1 
+					GraphicEqualizer = 0 
+					AutomaticGain = 0 
+					DelayControl = 0 
+					BassBoostControl = 2 
+					LoudnessControl = 0 
+					InputGainControl = 0 
+					InputGainPadControl = 0 
+					PhaseInverterControl = 2 
+					UnderflowControl = 0 
+					OverfowControl = 0 
+					Reserved = 0 
+				bmControls = 00000010000000100000000100000001 
+		iFeature = 0 
+
+
+##################################
+[9, 36, 6, 5, 4, 1, 67, 0, 0]
+descriptors[9] = "Class-Specific Interface Descriptor" 
+bLength = 9 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = FEATURE_UNIT(6)
+ac_interface =  
+	feature_unit =  
+		bUnitID = 5 
+		bSourceID = 4 
+		iFeature = 1 
+unknown =  67, 0, 0  
+
+
+##################################
+[9, 36, 6, 7, 4, 1, 3, 0, 0]
+descriptors[10] = "Class-Specific Interface Descriptor" 
+bLength = 9 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = FEATURE_UNIT(6)
+ac_interface =  
+	feature_unit =  
+		bUnitID = 7 
+		bSourceID = 4 
+		iFeature = 1 
+unknown =  3, 0, 0  
+
+
+##################################
+[13, 36, 4, 8, 2, 1, 7, 2, 3, 0, 0, 0, 0]
+descriptors[11] = "Class-Specific Interface Descriptor" 
+bLength = 13 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = MIXER_UNIT(4) 
+ac_interface =  
+	mixer_unit =  
+		bUnitID = 8 
+		bNrInPins = 2 
+		baSourceID =  1, 7  
+		bNrChannels = 2 
+		bmChannelConfig = 3 
+		iChannelNames = 0 
+		controls =  
+			mixer =  
+				CopyProtect = 1 
+				UnderflowControl = 2 
+				OverflowControl = 0 
+				Reserved = 0 
+			bmControls = 00001001 
+		iMixer = 0 
+
+
+##################################
+[9, 4, 1, 0, 0, 1, 2, 0, 0]
+descriptors[12] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 1 
+bAlternateSetting = 0 
+bNumEndpoints = 0 
+bInterfaceClass = UsbAudio (1) 
+bInterfaceSubClass = AUDIOSTREAMING(2) 
+bInterfaceProtocol = INTERFACE_PROTOCOL_UNDEFINED(0) 
+iInterface = 0 
+
+
+##################################
+[9, 4, 1, 1, 1, 1, 2, 0, 0]
+descriptors[13] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 1 
+bAlternateSetting = 1 
+bNumEndpoints = 1 
+bInterfaceClass = UsbAudio (1) 
+bInterfaceSubClass = AUDIOSTREAMING(2) 
+bInterfaceProtocol = INTERFACE_PROTOCOL_UNDEFINED(0) 
+iInterface = 0 
+
+
+##################################
+[7, 36, 1, 1, 1, 1, 0]
+descriptors[14] = "Class-Specific Interface Descriptor" 
+bLength = 7 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = HEADER(1) 
+as_interface =  
+	bTerminalLink = 1 
+	bmControls = 1 
+	bFormatType = FORMAT_TYPE_I(1) 
+	bmFormats = 35917312 
+	bNrChannels = 1 
+	bmChannelConfig = 34603522 
+	iChannelNames = 68 
+
+
+##################################
+[14, 36, 2, 1, 2, 2, 16, 2, 68, 172, 0, 128, 187, 0]
+descriptors[15] = "Class-Specific Interface Descriptor" 
+bLength = 14 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = INPUT_TERMINAL(2) 
+as_interface =  
+	bFormatType = FORMAT_TYPE_I(1)  
+	bNrChannels = 2 
+	bSubslotSize = 2 
+	bBitResolution = 16 
+	bSampleFreqType = 2 
+	sample_freq = "44100 Hz" 
+		aSampleFreq =  68, 172, 0  
+unknown =  128, 187, 0  
+
+
+##################################
+[9, 5, 5, 1, 192, 0, 1, 0, 0]
+descriptors[16] = "Endpoint Descriptor" 
+bLength = 9 
+bDescriptorType = USB_ENDPOINT_DESCRIPTOR_TYPE (5) 
+bEndpointAddress = 5
+Reserved = 0 
+Direction = Output 
+type = Isochronous (1) 
+reserved = 0 
+wMaxPacketSize = 192 
+bInterval = 1 
+unknown =  0, 0  
+
+
+##################################
+[7, 37, 1, 1, 0, 0, 0]
+descriptors[17] = "Class-Specific Endpoint Descriptor" 
+bLength = 7 
+bDescriptorType = CS_ENDPOINT (37) 
+iso_endpoint =  
+	bmAttributes = 1 
+	controls =  
+		iso_data =  
+			PitchControl = 1 
+			DataOverrunControl = 0 
+			DataUnderrunControl = 0 
+			Reserved = 0 
+		bmControls = 00000001 
+	bLockDelayUnits = Undefined (0) 
+	wLockDelay = 0 
+
+
+##################################
+[9, 4, 2, 0, 0, 1, 2, 0, 0]
+descriptors[18] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 2 
+bAlternateSetting = 0 
+bNumEndpoints = 0 
+bInterfaceClass = UsbAudio (1) 
+bInterfaceSubClass = AUDIOSTREAMING(2)
+bInterfaceProtocol = INTERFACE_PROTOCOL_UNDEFINED(0) 
+iInterface = 0 
+
+
+##################################
+[9, 4, 2, 1, 1, 1, 2, 0, 0])
+descriptors[19] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 2 
+bAlternateSetting = 1 
+bNumEndpoints = 1 
+bInterfaceClass = UsbAudio (1) 
+bInterfaceSubClass = AUDIOSTREAMING(2)
+bInterfaceProtocol = INTERFACE_PROTOCOL_UNDEFINED(0) 
+iInterface = 0 
+
+
+##################################
+[7, 36, 1, 2, 1, 1, 0]
+descriptors[20] = "Class-Specific Interface Descriptor" 
+bLength = 7 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = HEADER(1) 
+as_interface =  
+	bTerminalLink = 2 
+	bmControls = 1 
+	bFormatType = 1 
+	bmFormats = 35917312 
+	bNrChannels = 1 
+	bmChannelConfig = 34603521 
+	iChannelNames = 68 
+
+
+##################################
+[14, 36, 2, 1, 1, 2, 16, 2, 68, 172, 0, 128, 187, 0]
+descriptors[21] = "Class-Specific Interface Descriptor" 
+bLength = 14 
+bDescriptorType = CS_INTERFACE (36) 
+bDescriptorSubtype = INPUT_TERMINAL(2) 
+as_interface =  
+	bFormatType = FORMAT_TYPE_I(1) 
+	bNrChannels = 1 
+	bSubslotSize = 2 
+	bBitResolution = 16 
+	bSampleFreqType = 2 
+	sample_freq = "44100 Hz" 
+		aSampleFreq =  68, 172, 0  
+unknown =  128, 187, 0  
+
+
+##################################
+[9, 5, 134, 1, 100, 0, 1, 0, 0]
+descriptors[22] = "Endpoint Descriptor" 
+bLength = 9 
+bDescriptorType = USB_ENDPOINT_DESCRIPTOR_TYPE (5) 
+bEndpointAddress = 6 
+Reserved = 0 
+Direction = Input 
+type = Isochronous (1) 
+reserved = 0 
+wMaxPacketSize = 100 
+bInterval = 1 
+unknown =  0, 0  
+
+
+##################################
+[7, 37, 1, 1, 0, 0, 0]
+descriptors[23] = "Class-Specific Endpoint Descriptor" 
+bLength = 7 
+bDescriptorType = CS_ENDPOINT (37) 
+iso_endpoint =  
+	bmAttributes = 1 
+	controls =  
+		iso_data =  
+			PitchControl = 1 
+			DataOverrunControl = 0 
+			DataUnderrunControl = 0 
+			Reserved = 0 
+		bmControls = 00000001 
+	bLockDelayUnits = Undefined (0) 
+	wLockDelay = 0 
+
+
+##################################
+[9, 4, 3, 0, 1, 3, 0, 0, 0]
+descriptors[24] = "Interface Descriptor" 
+bLength = 9 
+bDescriptorType = USB_INTERFACE_DESCRIPTOR_TYPE (4) 
+bInterfaceNumber = 3 
+bAlternateSetting = 0 
+bNumEndpoints = 1 
+bInterfaceClass = UsbHID (3) 
+bInterfaceSubClass = 0 
+bInterfaceProtocol = 0 
+iInterface = 0 
+
+
+##################################
+[9, 33, 1, 2, 0, 1, 34, 41, 0]
+descriptors[25] = "HID Descriptor" 
+bLength = 9 
+bDescriptorType = HID_HID_DESCRIPTOR_TYPE (33) 
+bcdHID = 2.01 
+bCountry = NotDefined (0) 
+bNumDescriptors = 1 
+reports =  
+	reports[0] =  
+		bReportType = 34 
+		wReportLength = 41 
+		raw =  7, 5, 131, 3, 8¡K  
+ 

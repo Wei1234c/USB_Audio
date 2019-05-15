@@ -1,0 +1,847 @@
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_channel_cluster_descriptor;
+CREATE TABLE audio_channel_cluster_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dolby_prologic_cluster_descriptor;
+CREATE TABLE dolby_prologic_cluster_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS left_group_cluster_descriptor;
+CREATE TABLE left_group_cluster_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_interface_association_descriptor;
+CREATE TABLE standard_interface_association_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bFirstInterface VARCHAR(2),
+    bInterfaceCount VARCHAR(2),
+    bFunctionClass VARCHAR(2),
+    bFunctionSubClass VARCHAR(2),
+    bFunctionProtocol VARCHAR(2),
+    iFunction VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_ac_interface_descriptor;
+CREATE TABLE standard_ac_interface_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bInterfaceNumber VARCHAR(2),
+    bAlternateSetting VARCHAR(2),
+    bNumEndpoints VARCHAR(2),
+    bInterfaceClass VARCHAR(2),
+    bInterfaceSubClass VARCHAR(2),
+    bInterfaceProtocol VARCHAR(2),
+    iInterface VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS class_specific_ac_interface_header_descriptor;
+CREATE TABLE class_specific_ac_interface_header_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bcdADC VARCHAR(4),
+    bCategory VARCHAR(2),
+    wTotalLength VARCHAR(4),
+    bmControls VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_source_descriptor;
+CREATE TABLE clock_source_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bClockID VARCHAR(2),
+    bmAttributes VARCHAR(2),
+    bmControls VARCHAR(2),
+    bAssocTerminal VARCHAR(2),
+    iClockSource VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_selector_descriptor;
+CREATE TABLE clock_selector_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bClockID VARCHAR(2),
+    bNrInPins VARCHAR(2),
+    baCSourceID_1_ VARCHAR(2),
+    baCSourceID__p_ VARCHAR(2),
+    bmControls VARCHAR(2),
+    iClockSelector VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS clock_multiplier_descriptor;
+CREATE TABLE clock_multiplier_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bClockID VARCHAR(2),
+    bCSourceID VARCHAR(2),
+    bmControls VARCHAR(2),
+    iClockMultiplier VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS input_terminal_descriptor;
+CREATE TABLE input_terminal_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bTerminalID VARCHAR(2),
+    wTerminalType VARCHAR(4),
+    bAssocTerminal VARCHAR(2),
+    bCSourceID VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(4),
+    iTerminal VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS output_terminal_descriptor;
+CREATE TABLE output_terminal_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bTerminalID VARCHAR(2),
+    wTerminalType VARCHAR(4),
+    bAssocTerminal VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bCSourceID VARCHAR(2),
+    bmControls VARCHAR(4),
+    iTerminal VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mixer_unit_descriptor;
+CREATE TABLE mixer_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    bNrInPins VARCHAR(2),
+    baSourceID_1_ VARCHAR(2),
+    baSourceID__p_ VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmMixerControls VARCHAR(2),
+    bmControls VARCHAR(2),
+    iMixer VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS selector_unit_descriptor;
+CREATE TABLE selector_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    bNrInPins VARCHAR(2),
+    baSourceID_1_ VARCHAR(2),
+    baSourceID__p_ VARCHAR(2),
+    bmControls VARCHAR(2),
+    iSelector VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS feature_unit_descriptor;
+CREATE TABLE feature_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iFeature VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS sampling_rate_converter_unit_descriptor;
+CREATE TABLE sampling_rate_converter_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bCSourceInID VARCHAR(2),
+    bCSourceOutID VARCHAR(2),
+    iSRC VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS common_part_of_the_effect_unit_descriptor;
+CREATE TABLE common_part_of_the_effect_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wEffectType VARCHAR(4),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iEffects VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS parametric_equalizer_section_effect_unit_descriptor;
+CREATE TABLE parametric_equalizer_section_effect_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wEffectType VARCHAR(4),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iEffects VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS reverberation_effect_unit_descriptor;
+CREATE TABLE reverberation_effect_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wEffectType VARCHAR(4),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iEffects VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS modulation_delay_effect_unit_descriptor;
+CREATE TABLE modulation_delay_effect_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wEffectType VARCHAR(4),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iEffects VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dynamic_range_compressor_effect_unit_descriptor;
+CREATE TABLE dynamic_range_compressor_effect_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wEffectType VARCHAR(4),
+    bSourceID VARCHAR(2),
+    bmaControls_0_ VARCHAR(8),
+    bmaControls_1_ VARCHAR(8),
+    bmaControls_ch_ VARCHAR(8),
+    iEffects VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS common_part_of_the_processing_unit_descriptor;
+CREATE TABLE common_part_of_the_processing_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wProcessType VARCHAR(4),
+    bNrInPins VARCHAR(2),
+    baSourceID_1_ VARCHAR(2),
+    baSourceID__p_ VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(4),
+    iProcessing VARCHAR(2),
+    Process_specific VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS up_down_mix_processing_unit_descriptor;
+CREATE TABLE up_down_mix_processing_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wProcessType VARCHAR(4),
+    bNrInPins VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(4),
+    iProcessing VARCHAR(2),
+    bNrModes VARCHAR(2),
+    daModes_1_ VARCHAR(8),
+    daModes_m_ VARCHAR(8));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dolby_prologic_processing_unit_descriptor;
+CREATE TABLE dolby_prologic_processing_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wProcessType VARCHAR(4),
+    bNrInPins VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(4),
+    iProcessing VARCHAR(2),
+    bNrModes VARCHAR(2),
+    daModes_1_ VARCHAR(8),
+    daModes_m_ VARCHAR(8));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS stereo_extender_processing_unit_descriptor;
+CREATE TABLE stereo_extender_processing_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wProcessType VARCHAR(4),
+    bNrInPins VARCHAR(2),
+    bSourceID VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(4),
+    iProcessing VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS extension_unit_descriptor;
+CREATE TABLE extension_unit_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bUnitID VARCHAR(2),
+    wExtensionCode VARCHAR(4),
+    bNrInPins VARCHAR(2),
+    baSourceID_1_ VARCHAR(2),
+    baSourceID__p_ VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2),
+    bmControls VARCHAR(2),
+    iExtension VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_ac_interrupt_endpoint_descriptor;
+CREATE TABLE standard_ac_interrupt_endpoint_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bEndpointAddress VARCHAR(2),
+    bmAttributes VARCHAR(2),
+    wMaxPacketSize VARCHAR(4),
+    bInterval VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_as_interface_descriptor;
+CREATE TABLE standard_as_interface_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bInterfaceNumber VARCHAR(2),
+    bAlternateSetting VARCHAR(2),
+    bNumEndpoints VARCHAR(2),
+    bInterfaceClass VARCHAR(2),
+    bInterfaceSubClass VARCHAR(2),
+    bInterfaceProtocol VARCHAR(2),
+    iInterface VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS class_specific_as_interface_descriptor;
+CREATE TABLE class_specific_as_interface_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bTerminalLink VARCHAR(2),
+    bmControls VARCHAR(2),
+    bFormatType VARCHAR(2),
+    bmFormats VARCHAR(8),
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS encoder_descriptor;
+CREATE TABLE encoder_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bEncoderID VARCHAR(2),
+    bEncoder VARCHAR(2),
+    bmControls VARCHAR(8),
+    iParam1 VARCHAR(2),
+    iParam2 VARCHAR(2),
+    iParam3 VARCHAR(2),
+    iParam4 VARCHAR(2),
+    iParam5 VARCHAR(2),
+    iParam6 VARCHAR(2),
+    iParam7 VARCHAR(2),
+    iParam8 VARCHAR(2),
+    iEncoder VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mpeg_decoder_descriptor;
+CREATE TABLE mpeg_decoder_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bDecoderID VARCHAR(2),
+    bDecoder VARCHAR(2),
+    bmMPEGCapabilities VARCHAR(4),
+    bmMPEGFeatures VARCHAR(2),
+    bmControls VARCHAR(2),
+    iDecoder VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS ac_3_decoder_descriptor;
+CREATE TABLE ac_3_decoder_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bDecoderID VARCHAR(2),
+    bDecoder VARCHAR(2),
+    bmBSID VARCHAR(8),
+    bmAC3Features VARCHAR(2),
+    bmControls VARCHAR(2),
+    iDecoder VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS wma_decoder_descriptor;
+CREATE TABLE wma_decoder_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bDecoderID VARCHAR(2),
+    bDecoder VARCHAR(2),
+    bmWMAProfile VARCHAR(4),
+    bmControls VARCHAR(2),
+    iDecoder VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dts_decoder_descriptor;
+CREATE TABLE dts_decoder_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bDecoderID VARCHAR(2),
+    bDecoder VARCHAR(2),
+    bmCapabilities VARCHAR(2),
+    bmControls VARCHAR(2),
+    iDecoder VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_as_isochronous_audio_data_endpoint_descriptor;
+CREATE TABLE standard_as_isochronous_audio_data_endpoint_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bEndpointAddress VARCHAR(2),
+    bmAttributes VARCHAR(2),
+    wMaxPacketSize VARCHAR(4),
+    bInterval VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS class_specific_as_isochronous_audio_data_endpoint_descriptor;
+CREATE TABLE class_specific_as_isochronous_audio_data_endpoint_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bmAttributes VARCHAR(2),
+    bmControls VARCHAR(2),
+    bLockDelayUnits VARCHAR(2),
+    wLockDelay VARCHAR(4));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS standard_as_isochronous_feedback_endpoint_descriptor;
+CREATE TABLE standard_as_isochronous_feedback_endpoint_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bEndpointAddress VARCHAR(2),
+    bmAttributes VARCHAR(2),
+    wMaxPacketSize VARCHAR(4),
+    bInterval VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS one_byte_control_cur_parameter_block;
+CREATE TABLE one_byte_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bCUR VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS one_byte_control_range_parameter_block;
+CREATE TABLE one_byte_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    bMIN_1_ VARCHAR(2),
+    bMAX_1_ VARCHAR(2),
+    bRES_1_ VARCHAR(2),
+    bMIN_n_ VARCHAR(2),
+    bMAX_n_ VARCHAR(2),
+    bRES_n_ VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS two_byte_control_cur_parameter_block;
+CREATE TABLE two_byte_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wCUR VARCHAR(4));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS two_byte_control_range_parameter_block;
+CREATE TABLE two_byte_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    wMIN_1_ VARCHAR(4),
+    wMAX_1_ VARCHAR(4),
+    wRES_1_ VARCHAR(4),
+    wMIN_n_ VARCHAR(4),
+    wMAX_n_ VARCHAR(4),
+    wRES_n_ VARCHAR(4));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS four_byte_control_cur_parameter_block;
+CREATE TABLE four_byte_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    dCUR VARCHAR(8));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS four_byte_control_range_parameter_block;
+CREATE TABLE four_byte_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    dMIN__1_ VARCHAR(8),
+    dMAX__1_ VARCHAR(8),
+    dRES__1_ VARCHAR(8),
+    dMIN_n_ VARCHAR(8),
+    dMAX_n_ VARCHAR(8),
+    dRES_n_ VARCHAR(8));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS cluster_control_cur_parameter_block;
+CREATE TABLE cluster_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS connector_control_cur_parameter_block;
+CREATE TABLE connector_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bNrChannels VARCHAR(2),
+    bmChannelConfig VARCHAR(8),
+    iChannelNames VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS graphic_equalizer_control_cur_parameter_block;
+CREATE TABLE graphic_equalizer_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bmBandsPresent VARCHAR(8),
+    bCUR_Lowest_ VARCHAR(2),
+    bCUR_Highest_ VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS graphic_equalizer_control_range_parameter_block;
+CREATE TABLE graphic_equalizer_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    bMIN_1_ VARCHAR(2),
+    bMAX_1_ VARCHAR(2),
+    bRES_1_ VARCHAR(2),
+    bMIN_n_ VARCHAR(2),
+    bMAX_n_ VARCHAR(2),
+    bRES_n_ VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS valid_alternate_settings_control_cur_parameter_block;
+CREATE TABLE valid_alternate_settings_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bControlSize VARCHAR(2),
+    bmValidAltSettings VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_cur_parameter_block;
+CREATE TABLE high_low_scaling_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bCUR_Hi VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_range_parameter_block;
+CREATE TABLE high_low_scaling_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    bMIN_1_ VARCHAR(2),
+    bMAX_1_ VARCHAR(2),
+    bRES_1_ VARCHAR(2),
+    bMIN_n_ VARCHAR(2),
+    bMAX_n_ VARCHAR(2),
+    bRES_n_ VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_cur_parameter_block;
+CREATE TABLE high_low_scaling_control_cur_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bCUR_Lo VARCHAR(2),
+    bCUR_Hi VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_range_parameter_block;
+CREATE TABLE high_low_scaling_control_range_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    wNumSubRanges VARCHAR(4),
+    bMIN_1_ VARCHAR(2),
+    bMAX_1_ VARCHAR(2),
+    bRES_1_ VARCHAR(2),
+    bMIN_n_ VARCHAR(2),
+    bMAX_n_ VARCHAR(2),
+    bRES_n_ VARCHAR(2));
+PRAGMA foreign_keys = on;
+
