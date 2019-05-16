@@ -1,4 +1,12 @@
-from universal_serial_bus.orm import OrmClassBase
+from universal_serial_bus.orm import ModelBuilder, OrmClassBase
+
+
+
+def map_db_objects(db_url):
+    engine, meta, tables, session = ModelBuilder.get_db_objects(db_url)
+    script = ModelBuilder._gen_mapping_strings(db_url, print_out = False)
+    exec(script)
+    return engine, meta, tables, session
 
 
 
