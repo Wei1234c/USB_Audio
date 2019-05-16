@@ -1,0 +1,248 @@
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS type_i_format_type_descriptor;
+CREATE TABLE type_i_format_type_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bFormatType VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bSubframeSize VARCHAR(2),
+    bBitResolution VARCHAR(2),
+    bSamFreqType VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS continuous_sampling_frequency;
+CREATE TABLE continuous_sampling_frequency (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tLowerSamFreq VARCHAR(6),
+    tUpperSamFreq VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS discrete_number_of_sampling_frequencies;
+CREATE TABLE discrete_number_of_sampling_frequencies (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tSamFreq__1_ VARCHAR(6),
+    tSamFreq__ns_ VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS type_ii_format_type_descriptor;
+CREATE TABLE type_ii_format_type_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bFormatType VARCHAR(2),
+    wMaxBitRate VARCHAR(4),
+    wSamplesPerFrame VARCHAR(4),
+    bSamFreqType VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS continuous_sampling_frequency;
+CREATE TABLE continuous_sampling_frequency (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tLowerSamFreq VARCHAR(6),
+    tUpperSamFreq VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS discrete_number_of_sampling_frequencies;
+CREATE TABLE discrete_number_of_sampling_frequencies (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tSamFreq__1_ VARCHAR(6),
+    tSamFreq__ns_ VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mpeg_format_specific_descriptor;
+CREATE TABLE mpeg_format_specific_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    wFormatTag VARCHAR(4),
+    bmMPEGCapabilities VARCHAR(4),
+    bmMPEGFeatures VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dual_channel_control_parameter_block;
+CREATE TABLE dual_channel_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    BChannel2Enable VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS second_stereo_control_parameter_block;
+CREATE TABLE second_stereo_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    B2ndStereoEnable VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS multilingual_control_parameter_block;
+CREATE TABLE multilingual_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bMultiLingual VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dynamic_range_control_parameter_block;
+CREATE TABLE dynamic_range_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bEnable VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS scaling_control_parameter_block;
+CREATE TABLE scaling_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bScale VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_parameter_block;
+CREATE TABLE high_low_scaling_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLowScale VARCHAR(2),
+    bHighScale VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS ac_3_format_specific_descriptor;
+CREATE TABLE ac_3_format_specific_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    wFormatTag VARCHAR(4),
+    bmBSID VARCHAR(8),
+    bmAC3Features VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mode_control_parameter_block;
+CREATE TABLE mode_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bMode VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS dynamic_range_control_parameter_block;
+CREATE TABLE dynamic_range_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bEnable VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS scaling_control_parameter_block;
+CREATE TABLE scaling_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bScale VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS high_low_scaling_control_parameter_block;
+CREATE TABLE high_low_scaling_control_parameter_block (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLowScale VARCHAR(2),
+    bHighScale VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS type_iii_format_type_descriptor;
+CREATE TABLE type_iii_format_type_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bLength VARCHAR(2),
+    bDescriptorType VARCHAR(2),
+    bDescriptorSubtype VARCHAR(2),
+    bFormatType VARCHAR(2),
+    bNrChannels VARCHAR(2),
+    bSubframeSize VARCHAR(2),
+    bBitResolution VARCHAR(2),
+    bSamFreqType VARCHAR(2));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS continuous_sampling_frequency;
+CREATE TABLE continuous_sampling_frequency (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tLowerSamFreq VARCHAR(6),
+    tUpperSamFreq VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS discrete_number_of_sampling_frequencies;
+CREATE TABLE discrete_number_of_sampling_frequencies (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    tSamFreq__1_ VARCHAR(6),
+    tSamFreq__ns_ VARCHAR(6));
+PRAGMA foreign_keys = on;
+
+

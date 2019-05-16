@@ -1,0 +1,113 @@
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_i_codes;
+CREATE TABLE audio_data_format_type_i_codes (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    wformattag VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_i_codes (
+    name,
+    wformattag)
+Values
+
+('TYPE_I_UNDEFINED', '0000'),
+('PCM', '0001'),
+('PCM8', '0002'),
+('IEEE_FLOAT', '0003'),
+('ALAW', '0004'),
+('MULAW', '0005');
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_ii_codes;
+CREATE TABLE audio_data_format_type_ii_codes (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    wformattag VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_ii_codes (
+    name,
+    wformattag)
+Values
+
+('TYPE_II_UNDEFINED', '1000'),
+('MPEG', '1001'),
+('AC-3', '1002');
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS audio_data_format_type_iii_codes;
+CREATE TABLE audio_data_format_type_iii_codes (
+    id INTEGER PRIMARY KEY,
+    name VARCHAR,
+    wformattag VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO audio_data_format_type_iii_codes (
+    name,
+    wformattag)
+Values
+
+('TYPE_III_UNDEFINED', '2000'),
+('IEC1937_AC-3', '2001'),
+('IEC1937_MPEG-1_Layer1', '2002'),
+('IEC1937_MPEG-1_Layer2/3 or IEC1937_MPEG-2_NOEXT', '2003'),
+('IEC1937_MPEG-2_EXT', '2004'),
+('IEC1937_MPEG-2_Layer1_LS', '2005'),
+('IEC1937_MPEG-2_Layer2/3_LS', '2006');
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS format_type_codes;
+CREATE TABLE format_type_codes (
+    id INTEGER PRIMARY KEY,
+    format_type_code VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO format_type_codes (
+    format_type_code,
+    value)
+Values
+
+('FORMAT_TYPE_UNDEFINED FORMAT_TYPE_I FORMAT_TYPE_II FORMAT_TYPE_II', '00 01 02 03');
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS mpeg_control_selectors;
+CREATE TABLE mpeg_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO mpeg_control_selectors (
+    control_selector,
+    value)
+Values
+
+('MPEG_CONTROL_UNDEFINED', '00'),
+('MP_DUAL_CHANNEL_CONTROL', '01'),
+('MP_SECOND_STEREO_CONTROL', '02'),
+('MP_MULTILINGUAL_CONTROL', '03'),
+('MP_DYN_RANGE_CONTROL', '04'),
+('MP_SCALING_CONTROL', '05'),
+('MP_HILO_SCALING_CONTROL', '06');
+
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS ac_3_control_selectors;
+CREATE TABLE ac_3_control_selectors (
+    id INTEGER PRIMARY KEY,
+    control_selector VARCHAR,
+    value VARCHAR);
+PRAGMA foreign_keys = on;
+INSERT INTO ac_3_control_selectors (
+    control_selector,
+    value)
+Values
+
+('AC_CONTROL_UNDEFINED', '00'),
+('AC_MODE_CONTROL', '01'),
+('AC_DYN_RANGE_CONTROL', '02'),
+('AC_SCALING_CONTROL', '03'),
+('AC_HILO_SCALING_CONTROL', '04');
+

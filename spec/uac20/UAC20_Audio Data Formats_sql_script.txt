@@ -1,4 +1,4 @@
-PRAGMA foreign_keys = off;
+"PRAGMA foreign_keys = off;
 DROP TABLE IF EXISTS format_type_codes;
 CREATE TABLE format_type_codes (
     id INTEGER PRIMARY KEY,
@@ -136,3 +136,4 @@ Values
 ('PROTOCOL_UNDEFINED', '00'),
 ('PRES_TIMESTAMP_PROTOCOL', '01');
 
+"

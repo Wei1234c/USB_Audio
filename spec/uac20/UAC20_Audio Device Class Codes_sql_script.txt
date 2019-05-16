@@ -1,4 +1,4 @@
-PRAGMA foreign_keys = off;
+"PRAGMA foreign_keys = off;
 DROP TABLE IF EXISTS audio_function_class_code;
 CREATE TABLE audio_function_class_code (
     id INTEGER PRIMARY KEY,
@@ -726,3 +726,5 @@ Values
 ('EP_PITCH_CONTROL', '01'),
 ('EP_DATA_OVERRUN_CONTROL', '02'),
 ('EP_DATA_UNDERRUN_CONTROL', '03');
+
+"

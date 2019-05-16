@@ -114,7 +114,7 @@ Values
 ('Telephony Undefined', '0500','I/O', 'Telephony Terminal, undefined Type.'),
 ('Phone line', '0501','I/O', 'May be an analog telephone line jack, an ISDN line, a proprietary PBX interface, or a wireless link.'),
 ('Telephone', '0502','I/O', 'Device can be used as a telephone. When not in use as a telephone, handset is used as a bi-directional audio device.'),
-('Down Line Phone', '0503','I/O', 'A standard telephone set connected to the device. When not in use as a telephone, it can be used as a bi-directional audio device.');
+('Down Line Phone', '0503','I/O', 'A standard telephone set connected to the device. When not in use as a telephone, it can be used as a bi- directional audio device.');
 
 --------------------------------------------------------------
 PRAGMA foreign_keys = off;
@@ -140,10 +140,7 @@ Values
 ('Legacy audio connector', '0604','I/O', 'An input connector assumed to be connected to the lineout of the legacy audio system of the host computer. Used for backward compatibility.'),
 ('S/PDIF interface', '0605','I/O', 'An S/PDIF digital audio interface. The Associated Interface descriptor can be used to reference an interface used for controlling special functions of this interface.'),
 ('1394 DA stream', '0606','I/O', 'An interface to audio streams on a 1394 bus.'),
-('1394 DV stream soundtrack', '0607','I/O', 'An interface to soundtrack of A/V stream on a 1394 bus.'),
-('ADAT Lightpipe', '0608','I/O', 'An optical connection carrying the Alesis Digital Audio Tape stream. Contact Alesis for technical information.'),
-('TDIF', '0609','I/O', 'Tascam Digital Interface. Contact Tascam for technical information.'),
-('MADI', '060A','I/O', 'Multi-channel Audio Digital Interface as defined by AES.');
+('1394 DV stream soundtrack', '0607','I/O', 'An interface to soundtrack of A/V stream on a 1394 bus.');
 
 --------------------------------------------------------------
 PRAGMA foreign_keys = off;
@@ -163,12 +160,13 @@ INSERT INTO embedded_terminal_types (
 Values
 
 ('Embedded Undefined', '0700','I/O', 'Embedded Terminal, undefined Type.'),
-('Level Calibration Noise Source', '0701','O', 'Internal Noise source for level calibration (MPEG decoding, Dolby Prologic?, AC-3 etc.)'),
+('Level Calibration Noise Source', '0701','O', 'Internal Noise source for level calibration (MPEG decoding, Dolby Prologic∆À, AC-3 etc.)'),
 ('Equalization Noise', '0702','O', 'Internal Noise source for measurements.'),
 ('CD player', '0703','I', 'Audio compact disc player or CD-ROM capable of audio playback.'),
 ('DAT', '0704','I/O', 'Digital Audio Tape.'),
 ('DCC', '0705','I/O', 'Digital Compact Cassette.'),
-('Compressed Audio Player', '0706','I/O', 'Compressed Audio player.'),
+('Terminal Type', 'Code','I/O', 'Description'),
+('MiniDisk', '0706','I/O', 'Minidisk player.'),
 ('Analog Tape', '0707','I/O', 'Analog Audio Tape.'),
 ('Phonograph', '0708','I', 'Analog vinyl record player.'),
 ('VCR Audio', '0709','I', 'Audio track of VCR.'),
@@ -181,9 +179,5 @@ Values
 ('Radio Receiver', '0710','I', 'AM/FM radio receiver.'),
 ('Radio Transmitter', '0711','O', 'AM/FM radio transmitter.'),
 ('Multi-track Recorder', '0712','I/O', 'A multi-track recording system.'),
-('Synthesizer', '0713','I/O', 'Synthesizer.'),
-('Piano', '0714','I/O', 'Piano'),
-('Guitar', '0715','I/O', 'Guitar'),
-('Drums/Rhythm', '0716','I/O', 'Percussion Instrument'),
-('Other Musical Instrument', '0717','I/O', 'Undefined Musical Instrument');
+('Synthesizer', '0713','I', 'Synthesizer.');
 

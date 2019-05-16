@@ -1,4 +1,4 @@
-----------------------------------------------------------
+"----------------------------------------------------------
 PRAGMA foreign_keys = off;
 DROP TABLE IF EXISTS type_i_format_type_descriptor;
 CREATE TABLE type_i_format_type_descriptor (
@@ -119,3 +119,4 @@ CREATE TABLE hi_res_presentation_timestamp_layout (
 PRAGMA foreign_keys = on;
 
 
+"

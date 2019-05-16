@@ -1,4 +1,4 @@
-----------------------------------------------------------
+"----------------------------------------------------------
 PRAGMA foreign_keys = off;
 DROP TABLE IF EXISTS audio_channel_cluster_descriptor;
 CREATE TABLE audio_channel_cluster_descriptor (
@@ -845,3 +845,5 @@ CREATE TABLE high_low_scaling_control_range_parameter_block (
     bRES_n_ VARCHAR(2));
 PRAGMA foreign_keys = on;
 
+
+"
