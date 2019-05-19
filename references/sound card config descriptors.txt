@@ -1,4 +1,27 @@
 ##################################
+[18, 1, 16, 1, 0, 0, 0, 8, 63, 27, 8, 32, 0, 1, 1, 2, 0, 1]
+Connection Information
+ Port: 1
+ Speed: Full Speed
+ Device address: 53
+ Open pipes: 1
+ Connection status: Device connected
+
+Device Descriptor
+ USB version: 1.10
+ Device class: 0x0 - (Defined at Interface level)
+ Device subclass: 0x0 - Unknown
+ Device protocol: 0x0 - Unknown
+ Control pipe max size: 8 bytes
+ Vendor ID: 0x1b3f (Generalplus Technology Inc.)
+ Product ID: 0x2008 (Unknown)
+ Product version: 1.0
+ Manufacturer: GeneralPlus
+ Product: USB Audio Device
+ Serial Number: Not specified
+ Configurations: 1
+
+##################################
 [9, 2, 253, 0, 4, 1, 0, 128, 50]
 descriptors[0] = "Configuration Descriptor" 
 bLength = 9 
@@ -403,15 +426,15 @@ as_interface =
 descriptors[21] = "Class-Specific Interface Descriptor" 
 bLength = 14 
 bDescriptorType = CS_INTERFACE (36) 
-bDescriptorSubtype = INPUT_TERMINAL(2) 
+bDescriptorSubtype = FORMAT_TYPE(2) 
 as_interface =  
 	bFormatType = FORMAT_TYPE_I(1) 
-	bNrChannels = 1 
-	bSubslotSize = 2 
-	bBitResolution = 16 
-	bSampleFreqType = 2 
-	sample_freq = "44100 Hz" 
-		aSampleFreq =  68, 172, 0  
+	bNrChannels = 1
+	bSubslotSize = 2
+	bBitResolution = 16
+	bSampleFreqType = 2
+	sample_freq = "44100 Hz"
+		aSampleFreq =  68, 172, 0
 unknown =  128, 187, 0  
 
 
@@ -476,3 +499,32 @@ reports =
 		wReportLength = 41 
 		raw =  7, 5, 131, 3, 8¡K  
  
+
+
+###### HID ######
+
+HID Descriptor
+Usage Page: 12 (Consumer)
+Usage: 1 (Consumer Control)
+Collection 
+Logical Minimum: 0
+Logical Maximum: 1
+Usage: 233 (Volume Increment)
+Usage: 234 (Volume Decrement)
+Report Size: 1
+Report Count: 2
+Input: 2 (Data,Variable,Absolute,No Wrap,Linear,Preferred State,No Null Position)
+
+Usage: 226 (Mute)
+Usage: 205 (Play/Pause)
+Usage: 181 (Scan Next Track)
+Usage: 182 (Scan Previous Track)
+Usage: 140 (Media Select Telephone)
+Report Count: 5
+Input: 6 (Data,Variable,Relative,No Wrap,Linear,Preferred State,No Null Position)
+
+Usage: 0 (Unassigned)
+Report Count: 1
+Input: 2 (Data,Variable,Absolute,No Wrap,Linear,Preferred State,No Null Position)
+
+End Collection 

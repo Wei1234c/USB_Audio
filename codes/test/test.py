@@ -1,4 +1,6 @@
-import networkx as nx
-G = nx.MultiDiGraph()
-n = G.add_node(1,width = 1000)
-print(nx.nodes(G))
+from usb_audio.orm.uac20 import *
+
+# dev = UACdevice(0x4f2, 0xb57e)
+dev = UACdevice(0x1b3f, 0x2008)
+
+print(dev)
