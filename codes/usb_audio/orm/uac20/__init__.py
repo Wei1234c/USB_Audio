@@ -12,6 +12,8 @@ class UACdevice(UACdevice):
         def is_a(descpt, i, code):
             return OrmClassBase.int_eq_hex(descpt[i], code)
 
+        def get_code(descpt, i):
+            return  OrmClassBase.int_to_hex(descpt[i])
 
         _class = None
 
@@ -19,14 +21,18 @@ class UACdevice(UACdevice):
             _class = StandardConfigurationDescriptor
 
         if is_a(descriptor, 1, '05'):  # 如果是 endpoint
+            if intf_type == "HID":
+                _class = StandardEndpointDescriptor
+
             if intf_type == "AS":
                 _class = StandardAsIsochronousAudioDataEndpointDescriptor
-            if intf_type == "HID":
-                pass
 
         if is_a(descriptor, 1, '04'):  # 如果是 interface
 
             _class = StandardInterfaceDescriptor
+
+            if is_a(descriptor, 5, '03'):  # 如果是 HID
+                intf_type = "HID"
 
             if is_a(descriptor, 5, '01'):  # 如果是 audio
                 if is_a(descriptor, 6, '01'):  # 如果是 AC interface
@@ -51,8 +57,7 @@ class UACdevice(UACdevice):
                             '0C': ClockMultiplierDescriptor,
                             '0D': SamplingRateConverterUnitDescriptor}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
-                _class = _classes[code]
+                _class = _classes[get_code(descriptor,2)]
 
             if intf_type == "AS":
                 _classes = {'00': None,
@@ -61,8 +66,7 @@ class UACdevice(UACdevice):
                             '03': EncoderDescriptor,
                             '04': 'DECODER'}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
-                _class = _classes[code]
+                _class = _classes[get_code(descriptor,2)]
 
         if is_a(descriptor, 1, '25'):  # 如果是 CS_ENDPOINT
             if intf_type == "AC":
@@ -72,7 +76,6 @@ class UACdevice(UACdevice):
                 _classes = {'00': None,
                             '01': ClassSpecificAsIsochronousAudioDataEndpointDescriptor}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
-                _class = _classes[code]
+                _class = _classes[get_code(descriptor,2)]
 
         return _class, intf_type
