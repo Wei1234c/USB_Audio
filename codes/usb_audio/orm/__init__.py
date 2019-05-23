@@ -1,7 +1,4 @@
-import usb
-
 import universal_serial_bus
-from universal_serial_bus.legacy import *
 from universal_serial_bus.orm import OrmClassBase
 
 
@@ -217,41 +214,6 @@ class Topologen:
 
 class UACdevice(universal_serial_bus.USBdevice):
 
-    @property
-    def descriptors_from_config(self):
-        bmRequestType = usb.util.build_request_type(CONTROL_REQUEST.DIRECTION.IN,
-                                                    CONTROL_REQUEST.TYPE.STANDARD,
-                                                    CONTROL_REQUEST.RECIPIENT.DEVICE)
-
-        descriptor = self.ctrl_transfer(bmRequestType = bmRequestType,
-                                        bRequest = CONTROL_REQUEST.GET_DESCRIPTOR,
-                                        wValue = DESCRIPTOR.TYPE.CONFIG << 8,
-                                        wIndex = 0,
-                                        data_or_wLength = DESCRIPTOR.SIZE.CONFIG)
-
-        descriptor = self.ctrl_transfer(bmRequestType = bmRequestType,
-                                        bRequest = CONTROL_REQUEST.GET_DESCRIPTOR,
-                                        wValue = DESCRIPTOR.TYPE.CONFIG << 8,
-                                        wIndex = 0,
-                                        data_or_wLength = descriptor[2])
-
-        descriptors = list(OrmClassBase.split_descriptor(descriptor))
-
-        return descriptors
-
-
-    @property
-    def descriptors_dbos(self):
-        dbos = []
-        intf_type = None
-
-        for descriptor in self.descriptors_from_config:
-            _class, intf_type = self._categorize(descriptor, intf_type)
-
-            if _class is not None:
-                dbos.append(_class.from_byte_array(descriptor))
-
-        return dbos
 
 
     def draw_topolograph(self, *args, **kwargs):

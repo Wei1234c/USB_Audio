@@ -4,34 +4,38 @@ from .formats.descriptors import *
 from .. import UACdevice
 
 
+int_eq_hex = OrmClassBase.int_eq_hex
+int_to_hex = OrmClassBase.int_to_hex
+
+
 
 class UACdevice(UACdevice):
 
-    def _categorize(self, descriptor, intf_type = None):
-
-        def is_a(descpt, i, code):
-            return OrmClassBase.int_eq_hex(descpt[i], code)
-
+    @classmethod
+    def _categorize(cls, descriptor, intf_type = None):
 
         _class = None
 
-        if is_a(descriptor, 1, '02'):  # 如果是 config
+        if int_eq_hex(descriptor[1], '01'):  # 如果是 device
+            _class = StandardDeviceDescriptor
+
+        if int_eq_hex(descriptor[1], '02'):  # 如果是 config
             _class = StandardConfigurationDescriptor
 
-        if is_a(descriptor, 1, '05'):  # 如果是 endpoint
+        if int_eq_hex(descriptor[1], '05'):  # 如果是 endpoint
             _class = StandardAsIsochronousAudioDataEndpointDescriptor
 
-        if is_a(descriptor, 1, '04'):  # 如果是 interface
+        if int_eq_hex(descriptor[1], '04'):  # 如果是 interface
 
             _class = StandardInterfaceDescriptor
 
-            if is_a(descriptor, 5, '01'):  # 如果是 audio
-                if is_a(descriptor, 6, '01'):  # 如果是 AC interface
+            if int_eq_hex(descriptor[5], '01'):  # 如果是 audio
+                if int_eq_hex(descriptor[6], '01'):  # 如果是 AC interface
                     intf_type = "AC"
-                if is_a(descriptor, 6, '02'):  # 如果是 AC interface
+                if int_eq_hex(descriptor[6], '02'):  # 如果是 AC interface
                     intf_type = "AS"
 
-        if is_a(descriptor, 1, '24'):  # 如果是 CS_INTERFACE
+        if int_eq_hex(descriptor[1], '24'):  # 如果是 CS_INTERFACE
             if intf_type == "AC":
                 _classes = {'00': None,
                             '01': ClassSpecificAcInterfaceHeaderDescriptor,
@@ -44,7 +48,7 @@ class UACdevice(UACdevice):
                             '08': 'PROCESSING_UNIT',
                             '09': ExtensionUnitDescriptor}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
+                code = int_to_hex(descriptor[2])
                 _class = _classes[code]
 
             if intf_type == "AS":
@@ -52,10 +56,10 @@ class UACdevice(UACdevice):
                             '01': ClassSpecificAsInterfaceDescriptor,
                             '02': TypeIFormatTypeDescriptor}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
+                code = int_to_hex(descriptor[2])
                 _class = _classes[code]
 
-        if is_a(descriptor, 1, '25'):  # 如果是 CS_ENDPOINT
+        if int_eq_hex(descriptor[1], '25'):  # 如果是 CS_ENDPOINT
             if intf_type == "AC":
                 pass
 
@@ -63,7 +67,7 @@ class UACdevice(UACdevice):
                 _classes = {'00': None,
                             '01': ClassSpecificAsIsochronousAudioDataEndpointDescriptor}
 
-                code = OrmClassBase.int_to_hex(descriptor[2])
+                code = int_to_hex(descriptor[2])
                 _class = _classes[code]
 
         return _class, intf_type

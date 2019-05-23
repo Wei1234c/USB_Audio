@@ -506,9 +506,12 @@ reports =
 HID Descriptor
 Usage Page: 12 (Consumer)
 Usage: 1 (Consumer Control)
+
 Collection 
+
 Logical Minimum: 0
 Logical Maximum: 1
+
 Usage: 233 (Volume Increment)
 Usage: 234 (Volume Decrement)
 Report Size: 1
