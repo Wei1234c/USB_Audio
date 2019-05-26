@@ -39,7 +39,7 @@ class UACdevice(UACdevice):
             if int_eq_hex(descriptor[5], '01'):  # 如果是 audio
                 if int_eq_hex(descriptor[6], '01'):  # 如果是 AC interface
                     intf_type = "AC"
-                if int_eq_hex(descriptor[6], '02'):  # 如果是 AC interface
+                if int_eq_hex(descriptor[6], '02'):  # 如果是 AS interface
                     intf_type = "AS"
 
         if int_eq_hex(descriptor[1], '24'):  # 如果是 CS_INTERFACE

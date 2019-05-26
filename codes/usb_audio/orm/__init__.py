@@ -213,7 +213,48 @@ class Topologen:
 
 
 class UACdevice(universal_serial_bus.USBdevice):
+    CLASS_CODE = 0x01
+    INTERFACE_DESCRIPTOR_TYPE_CODE = 0x04
+    AUDIO_CONTROL_SUBCLASS_CODE = 0x01
+    AUDIO_STREAMING_SUBCLASS_CODE = 0x02
 
+    DESCRIPTOR_TYPE_FIELD_IDX = 1
+    INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX = 5
+    INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX = 6
+
+    CLASS_SPECIFIC_INTERFACE_CODE = 0x24
+    AUDIO_CONTROL_HEADER_SUBTYPE_CODE = 0x01
+    CLASS_SPECIFIC_INTERFACE_TYPE_FIELD_IDX = 1
+    CLASS_SPECIFIC_INTERFACE_SUBTYPE_FIELD_IDX = 2
+
+
+    @property
+    def uac_version(self):
+        return OrmClassBase.byte_array_to_bcd(self.audio_control_header_descriptors[0][3:5])
+
+
+    @property
+    def audio_control_descriptors(self):
+        return [descriptor for descriptor in self.descriptors
+                if (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and
+                (descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and
+                (descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_CONTROL_SUBCLASS_CODE)]
+
+
+    @property
+    def audio_streaming_descriptors(self):
+        return [descriptor for descriptor in self.descriptors
+                if (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and
+                (descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and
+                (descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_STREAMING_SUBCLASS_CODE)]
+
+
+    @property
+    def audio_control_header_descriptors(self):
+        return [descriptor for descriptor in self.descriptors
+                if (descriptor[self.CLASS_SPECIFIC_INTERFACE_TYPE_FIELD_IDX] == self.CLASS_SPECIFIC_INTERFACE_CODE) and
+                (descriptor[
+                     self.CLASS_SPECIFIC_INTERFACE_SUBTYPE_FIELD_IDX] == self.AUDIO_CONTROL_HEADER_SUBTYPE_CODE)]
 
 
     def draw_topolograph(self, *args, **kwargs):
