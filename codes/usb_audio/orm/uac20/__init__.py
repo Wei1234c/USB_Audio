@@ -10,6 +10,8 @@ int_to_hex = OrmClassBase.int_to_hex
 
 
 class UACdevice(UACdevice):
+    __version__ = '2.0'
+
 
     @classmethod
     def _categorize(cls, descriptor, intf_type = None):
@@ -42,6 +44,10 @@ class UACdevice(UACdevice):
                 if int_eq_hex(descriptor[6], '02'):  # 如果是 AS interface
                     intf_type = "AS"
 
+        if int_eq_hex(descriptor[1], '0B'):  # 如果是 interface association
+
+            _class = StandardInterfaceAssociationDescriptor
+
         if int_eq_hex(descriptor[1], '24'):  # 如果是 CS_INTERFACE
             if intf_type == "AC":
                 _classes = {'00': None,
@@ -59,7 +65,7 @@ class UACdevice(UACdevice):
                             '0C': ClockMultiplierDescriptor,
                             '0D': SamplingRateConverterUnitDescriptor}
 
-                _class = _classes[int_to_hex(descriptor[2])]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
             if intf_type == "AS":
                 _classes = {'00': None,
@@ -68,7 +74,7 @@ class UACdevice(UACdevice):
                             '03': EncoderDescriptor,
                             '04': 'DECODER'}
 
-                _class = _classes[int_to_hex(descriptor[2])]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
         if int_eq_hex(descriptor[1], '25'):  # 如果是 CS_ENDPOINT
             if intf_type == "AC":
@@ -78,6 +84,6 @@ class UACdevice(UACdevice):
                 _classes = {'00': None,
                             '01': ClassSpecificAsIsochronousAudioDataEndpointDescriptor}
 
-                _class = _classes[int_to_hex(descriptor[2])]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
         return _class, intf_type

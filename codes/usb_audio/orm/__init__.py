@@ -1,5 +1,22 @@
+from array import array
+
 import universal_serial_bus
+from orm.tools import AttrDict
+from universal_serial_bus.legacy import *
 from universal_serial_bus.orm import OrmClassBase
+
+
+byte_array_to_bcd = OrmClassBase.byte_array_to_bcd
+hex_reversed = OrmClassBase.hex_reversed
+byte_array_to_int = OrmClassBase.byte_array_to_int
+int_to_byte_array = OrmClassBase.int_to_byte_array
+byte_array_to_float = OrmClassBase.byte_array_to_float
+float_to_byte_array = OrmClassBase.float_to_byte_array
+
+AUDIO_CLASS_SPECIFIC_REQUEST_CODE = AttrDict({'REQUEST_CODE_UNDEFINED': 0,
+                                              'CUR'                   : 1,
+                                              'RANGE'                 : 2,
+                                              'MEM'                   : 3})
 
 
 
@@ -78,8 +95,8 @@ class Topologen:
 
 
     def _get_source_id(self):
-        return [getattr(self.dbo, attr) for attr in self._has_attr_name_like('SourceID')
-                if 'CSourceID'.lower() not in attr.lower()]
+        return [getattr(self.dbo, attr) for attr in self._has_attr_name_like('SourceID') if
+                'CSourceID'.lower() not in attr.lower()]
 
 
     def _get_attr_by_name(self, attr_name):
@@ -109,8 +126,8 @@ class Topologen:
     def TerminalType(self):
         if self.is_terminal:
             type_code = self._get_attr_by_name('TerminalType')[0]
-            hex_reversed = OrmClassBase.hex_reversed(type_code)
-            return self.TERMINAL_TYPES.get(hex_reversed, '')
+            hex_reved = hex_reversed(type_code)
+            return self.TERMINAL_TYPES.get(hex_reved, '')
 
 
     @property
@@ -180,11 +197,10 @@ class Topologen:
 
 
     @classmethod
-    def _draw_graph(cls, nodes, source_edges, clock_source_edges,
-                    node_size = 2000, node_color = 'blue', node_alpha = 0.5,
-                    label_font_size = 16, label_font_family = 'sans-serif',
-                    edge_width = 5, edge_color = 'green', edge_alpha = 0.5,
-                    edge_arrowstyle = '->', edge_arrowsize = 50, connectionstyle = 'arc3, rad=0.2'):
+    def _draw_graph(cls, nodes, source_edges, clock_source_edges, node_size = 2000, node_color = 'blue',
+                    node_alpha = 0.5, label_font_size = 16, label_font_family = 'sans-serif', edge_width = 5,
+                    edge_color = 'green', edge_alpha = 0.5, edge_arrowstyle = '->', edge_arrowsize = 50,
+                    connectionstyle = 'arc3, rad=0.2'):
 
         import networkx as nx
 
@@ -230,32 +246,146 @@ class UACdevice(universal_serial_bus.USBdevice):
 
     @property
     def uac_version(self):
-        return OrmClassBase.byte_array_to_bcd(self.audio_control_header_descriptors[0][3:5])
+        return byte_array_to_bcd(self.audio_control_header_descriptors[0][3:5])
 
 
     @property
     def audio_control_descriptors(self):
-        return [descriptor for descriptor in self.descriptors
-                if (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and
-                (descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and
-                (descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_CONTROL_SUBCLASS_CODE)]
+        return [descriptor for descriptor in self.descriptors if
+                (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and (
+                        descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and (
+                        descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_CONTROL_SUBCLASS_CODE)]
 
 
     @property
     def audio_streaming_descriptors(self):
-        return [descriptor for descriptor in self.descriptors
-                if (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and
-                (descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and
-                (descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_STREAMING_SUBCLASS_CODE)]
+        return [descriptor for descriptor in self.descriptors if
+                (descriptor[self.INTERFACE_DESCRIPTOR_CLASS_FIELD_IDX] == self.CLASS_CODE) and (
+                        descriptor[self.DESCRIPTOR_TYPE_FIELD_IDX] == self.INTERFACE_DESCRIPTOR_TYPE_CODE) and (
+                        descriptor[self.INTERFACE_DESCRIPTOR_SUBCLASS_FIELD_IDX] == self.AUDIO_STREAMING_SUBCLASS_CODE)]
 
 
     @property
     def audio_control_header_descriptors(self):
-        return [descriptor for descriptor in self.descriptors
-                if (descriptor[self.CLASS_SPECIFIC_INTERFACE_TYPE_FIELD_IDX] == self.CLASS_SPECIFIC_INTERFACE_CODE) and
-                (descriptor[
-                     self.CLASS_SPECIFIC_INTERFACE_SUBTYPE_FIELD_IDX] == self.AUDIO_CONTROL_HEADER_SUBTYPE_CODE)]
+        return [descriptor for descriptor in self.descriptors if
+                (descriptor[self.CLASS_SPECIFIC_INTERFACE_TYPE_FIELD_IDX] == self.CLASS_SPECIFIC_INTERFACE_CODE) and (
+                        descriptor[
+                            self.CLASS_SPECIFIC_INTERFACE_SUBTYPE_FIELD_IDX] == self.AUDIO_CONTROL_HEADER_SUBTYPE_CODE)]
 
 
     def draw_topolograph(self, *args, **kwargs):
         Topologen.draw_topolograph(self.descriptors_dbos, *args, **kwargs)
+
+
+    def _access_control_attributes(self, entity_id, control_id = 0x01,
+                                   bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
+                                   interface_id = 0x00, channel_no = 0x00,
+                                   data_or_wLength = 1024, direction = CONTROL_REQUEST.DIRECTION.IN):
+
+        bmRequestType = (direction & CONTROL_REQUEST.DIRECTION.MASK) | (
+                CONTROL_REQUEST.TYPE.CLASS & CONTROL_REQUEST.TYPE.MASK) | (
+                                CONTROL_REQUEST.RECIPIENT.INTERFACE & CONTROL_REQUEST.RECIPIENT.MASK)
+
+        return self.ctrl_transfer(bmRequestType = bmRequestType,
+                                  bRequest = bRequest,
+                                  wValue = control_id << 8 | channel_no,
+                                  wIndex = entity_id << 8 | interface_id,
+                                  data_or_wLength = data_or_wLength)
+
+
+    def get_control_attributes(self, entity_id, control_id = 0x01,
+                               bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
+                               interface_id = 0x00, channel_no = 0x00,
+                               data_or_wLength = 1024):
+
+        return self._access_control_attributes(entity_id = entity_id,
+                                               control_id = control_id,
+                                               bRequest = bRequest,
+                                               interface_id = interface_id,
+                                               channel_no = channel_no,
+                                               data_or_wLength = data_or_wLength,
+                                               direction = CONTROL_REQUEST.DIRECTION.IN)
+
+
+    def set_control_attributes(self, entity_id, control_id = 0x01,
+                               bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
+                               interface_id = 0x00, channel_no = 0x00,
+                               data_or_wLength = 1024):
+
+        return self._access_control_attributes(entity_id = entity_id,
+                                               control_id = control_id,
+                                               bRequest = bRequest,
+                                               interface_id = interface_id,
+                                               channel_no = channel_no,
+                                               data_or_wLength = data_or_wLength,
+                                               direction = CONTROL_REQUEST.DIRECTION.OUT)
+
+
+    @classmethod
+    def _gen_sampling_freq_bytes(cls, freq, length = 4):
+        return int_to_byte_array(freq, length = length)
+
+
+    @classmethod
+    def _gen_sampling_freqs_range(cls, freqs, length = 4):
+        freqs = sorted(set(freqs))
+        zero_bytes = cls._gen_sampling_freq_bytes(0, length = length)
+        range_bytes = int_to_byte_array(len(freqs), length = 2)
+
+        for freq in freqs:
+            freq_bytes = cls._gen_sampling_freq_bytes(freq, length = length)
+            range_bytes += freq_bytes + freq_bytes + zero_bytes
+
+        return range_bytes
+
+
+    @classmethod
+    def _get_sampling_freqs(cls, range_bytes, length = 4):
+        count = byte_array_to_int(range_bytes[:2])
+        return sorted([byte_array_to_int(range_bytes[2 + i * length * 3:2 + i * length * 3 + 4]) for i in range(count)])
+
+
+    def get_sampling_freqs(self, entity_id):
+        range_bytes = self.get_control_attributes(entity_id = entity_id,
+                                                  bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['RANGE'])
+        return self._get_sampling_freqs(range_bytes)
+
+
+    def get_sampling_freq(self, entity_id):
+        freq = self.get_control_attributes(entity_id = entity_id, data_or_wLength = 4)
+        return byte_array_to_int(freq)
+
+
+    def set_sampling_freq(self, entity_id, freq = 44100):
+        return self.set_control_attributes(entity_id = entity_id,
+                                           data_or_wLength = self._gen_sampling_freq_bytes(freq))
+
+
+    @classmethod
+    def _volume_bytes_to_db(cls, volume_bytes):
+        return byte_array_to_float(volume_bytes, int_bytes = 1, signed = True)
+
+
+    @classmethod
+    def _db_to_volume_bytes(cls, db):
+        return float_to_byte_array(db, int_bytes = 1, decimal_bytes = 1, signed = True)
+
+
+    def get_mute(self, entity_id):
+        mute = self.get_control_attributes(entity_id = entity_id, control_id = 1, data_or_wLength = 1)
+        return mute[0] == 1
+
+
+    def set_mute(self, entity_id, mute = False):
+        return self.set_control_attributes(entity_id = entity_id, control_id = 1,
+                                           data_or_wLength = array('B', [int(mute)]))
+
+
+    def get_volume(self, entity_id):
+        volume_bytes = self.get_control_attributes(entity_id = entity_id, control_id = 2, data_or_wLength = 2)
+        return self._volume_bytes_to_db(volume_bytes)
+
+
+    def set_volume(self, entity_id, volume_db = -60):
+        return self.set_control_attributes(entity_id = entity_id, control_id = 2,
+                                           data_or_wLength = self._db_to_volume_bytes(volume_db))
