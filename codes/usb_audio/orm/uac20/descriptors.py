@@ -495,6 +495,19 @@ class InputTerminalDescriptor(OrmClassBase):
 
 
 
+class InterruptDataMessageDescriptor(OrmClassBase):
+    fields_sizes = [('bInfo', 1), ('bAttribute', 1), ('wValue', 2), ('wIndex', 2), ]
+
+
+    def __init__(self, bInfo, bAttribute, wValue, wIndex, parent_id = None):
+        self.parent_id = parent_id
+        self.bInfo = bInfo
+        self.bAttribute = bAttribute
+        self.wValue = wValue
+        self.wIndex = wIndex
+
+
+
 class LeftGroupClusterDescriptor(OrmClassBase):
     fields_sizes = [('bNrChannels', 1), ('bmChannelConfig', 4), ('iChannelNames', 1), ]
 

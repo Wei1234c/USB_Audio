@@ -113,6 +113,16 @@ class Topologen:
 
 
     @property
+    def ClockID(self):
+        return self._get_attr_by_name('ClockID')
+
+
+    @property
+    def is_clock(self):
+        return len(self.ClockID)
+
+
+    @property
     def TerminalID(self):
         return self._get_attr_by_name('TerminalID')
 
@@ -142,6 +152,8 @@ class Topologen:
 
     @property
     def id(self):
+        if self.is_clock:
+            return self.ClockID[0]
         if self.is_terminal:
             return self.TerminalID[0]
         if self.is_unit:
@@ -150,7 +162,7 @@ class Topologen:
 
     @property
     def _has_id(self):
-        return len(self.TerminalID) or len(self.UnitID)
+        return len(self.ClockID) or len(self.TerminalID) or len(self.UnitID)
 
 
     @property
@@ -277,31 +289,33 @@ class UACdevice(universal_serial_bus.USBdevice):
         Topologen.draw_topolograph(self.descriptors_dbos, *args, **kwargs)
 
 
-    def _access_control_attributes(self, entity_id, control_id = 0x01,
+    def _access_control_attributes(self, entity_id = 0, control_id = 0x01,
                                    bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
-                                   interface_id = 0x00, channel_no = 0x00,
+                                   interface_or_endpoint_id = 0x00, is_interface = True, channel_no = 0x00,
                                    data_or_wLength = 1024, direction = CONTROL_REQUEST.DIRECTION.IN):
 
         bmRequestType = (direction & CONTROL_REQUEST.DIRECTION.MASK) | (
                 CONTROL_REQUEST.TYPE.CLASS & CONTROL_REQUEST.TYPE.MASK) | (
-                                CONTROL_REQUEST.RECIPIENT.INTERFACE & CONTROL_REQUEST.RECIPIENT.MASK)
+                                (
+                                    CONTROL_REQUEST.RECIPIENT.INTERFACE if is_interface else CONTROL_REQUEST.RECIPIENT.ENDPOINT) & CONTROL_REQUEST.RECIPIENT.MASK)
 
         return self.ctrl_transfer(bmRequestType = bmRequestType,
                                   bRequest = bRequest,
                                   wValue = control_id << 8 | channel_no,
-                                  wIndex = entity_id << 8 | interface_id,
+                                  wIndex = entity_id << 8 | interface_or_endpoint_id,
                                   data_or_wLength = data_or_wLength)
 
 
     def get_control_attributes(self, entity_id, control_id = 0x01,
                                bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
-                               interface_id = 0x00, channel_no = 0x00,
+                               interface_or_endpoint_id = 0x00, is_interface = True, channel_no = 0x00,
                                data_or_wLength = 1024):
 
         return self._access_control_attributes(entity_id = entity_id,
                                                control_id = control_id,
                                                bRequest = bRequest,
-                                               interface_id = interface_id,
+                                               interface_or_endpoint_id = interface_or_endpoint_id,
+                                               is_interface = is_interface,
                                                channel_no = channel_no,
                                                data_or_wLength = data_or_wLength,
                                                direction = CONTROL_REQUEST.DIRECTION.IN)
@@ -309,13 +323,14 @@ class UACdevice(universal_serial_bus.USBdevice):
 
     def set_control_attributes(self, entity_id, control_id = 0x01,
                                bRequest = AUDIO_CLASS_SPECIFIC_REQUEST_CODE['CUR'],
-                               interface_id = 0x00, channel_no = 0x00,
+                               interface_or_endpoint_id = 0x00, is_interface = True, channel_no = 0x00,
                                data_or_wLength = 1024):
 
         return self._access_control_attributes(entity_id = entity_id,
                                                control_id = control_id,
                                                bRequest = bRequest,
-                                               interface_id = interface_id,
+                                               interface_or_endpoint_id = interface_or_endpoint_id,
+                                               is_interface = is_interface,
                                                channel_no = channel_no,
                                                data_or_wLength = data_or_wLength,
                                                direction = CONTROL_REQUEST.DIRECTION.OUT)

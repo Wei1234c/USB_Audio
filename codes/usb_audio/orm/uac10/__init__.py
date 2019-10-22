@@ -24,21 +24,35 @@ class UACdevice(UACdevice):
         if int_eq_hex(descriptor[1], '02'):  # 如果是 config
             _class = StandardConfigurationDescriptor
 
-        if int_eq_hex(descriptor[1], '05'):  # 如果是 endpoint
-            _class = StandardAsIsochronousAudioDataEndpointDescriptor
-
         if int_eq_hex(descriptor[1], '04'):  # 如果是 interface
-
             _class = StandardInterfaceDescriptor
 
+            if int_eq_hex(descriptor[5], '03'):  # 如果是 HID
+                intf_type = "HID"
+
             if int_eq_hex(descriptor[5], '01'):  # 如果是 audio
+
                 if int_eq_hex(descriptor[6], '01'):  # 如果是 AC interface
                     intf_type = "AC"
-                if int_eq_hex(descriptor[6], '02'):  # 如果是 AC interface
+                    _class = StandardAcInterfaceDescriptor
+
+                if int_eq_hex(descriptor[6], '02'):  # 如果是 AS interface
                     intf_type = "AS"
+                    _class = StandardAsInterfaceDescriptor
+
+        if int_eq_hex(descriptor[1], '05'):  # 如果是 endpoint
+            _class = StandardEndpointDescriptor
+
+            if intf_type == "HID":
+                pass
+
+            if intf_type == "AC":
+                _class = StandardAcInterruptEndpointDescriptor
+
+            if intf_type == "AS":
+                _class = StandardAsIsochronousAudioDataEndpointDescriptor
 
         if int_eq_hex(descriptor[1], '0B'):  # 如果是 interface association
-
             _class = AssociatedInterfacesDescriptor
 
         if int_eq_hex(descriptor[1], '24'):  # 如果是 CS_INTERFACE
@@ -54,26 +68,23 @@ class UACdevice(UACdevice):
                             '08': 'PROCESSING_UNIT',
                             '09': ExtensionUnitDescriptor}
 
-                code = int_to_hex(descriptor[2])
-                _class = _classes[code.upper()]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
             if intf_type == "AS":
                 _classes = {'00': None,
                             '01': ClassSpecificAsInterfaceDescriptor,
                             '02': TypeIFormatTypeDescriptor}
 
-                code = int_to_hex(descriptor[2])
-                _class = _classes[code.upper()]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
         if int_eq_hex(descriptor[1], '25'):  # 如果是 CS_ENDPOINT
             if intf_type == "AC":
-                pass
+                pass  # There is no class-specific AudioControl interrupt endpoint descriptor
 
             if intf_type == "AS":
                 _classes = {'00': None,
                             '01': ClassSpecificAsIsochronousAudioDataEndpointDescriptor}
 
-                code = int_to_hex(descriptor[2])
-                _class = _classes[code.upper()]
+                _class = _classes[int_to_hex(descriptor[2]).upper()]
 
         return _class, intf_type

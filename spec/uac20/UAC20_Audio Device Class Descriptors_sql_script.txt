@@ -1,4 +1,4 @@
-"----------------------------------------------------------
+----------------------------------------------------------
 PRAGMA foreign_keys = off;
 DROP TABLE IF EXISTS audio_channel_cluster_descriptor;
 CREATE TABLE audio_channel_cluster_descriptor (
@@ -799,6 +799,7 @@ DROP TABLE IF EXISTS high_low_scaling_control_cur_parameter_block;
 CREATE TABLE high_low_scaling_control_cur_parameter_block (
     id INTEGER PRIMARY KEY,
     parent_id INTEGER,
+    bCUR_Lo VARCHAR(2),
     bCUR_Hi VARCHAR(2));
 PRAGMA foreign_keys = on;
 
@@ -846,4 +847,16 @@ CREATE TABLE high_low_scaling_control_range_parameter_block (
 PRAGMA foreign_keys = on;
 
 
-"
+----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS interrupt_data_message_descriptor;
+CREATE TABLE interrupt_data_message_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    bInfo VARCHAR(2),
+    bAttribute VARCHAR(2),
+    wValue VARCHAR(4),
+    wIndex VARCHAR(4));
+PRAGMA foreign_keys = on;
+
+

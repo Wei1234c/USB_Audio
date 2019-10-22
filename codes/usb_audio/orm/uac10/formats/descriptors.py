@@ -139,11 +139,12 @@ class SecondStereoControlParameterBlock(OrmClassBase):
 
 class TypeIFormatTypeDescriptor(OrmClassBase):
     fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bFormatType', 1),
-                    ('bNrChannels', 1), ('bSubframeSize', 1), ('bBitResolution', 1), ('bSamFreqType', 1), ]
+                    ('bNrChannels', 1), ('bSubframeSize', 1), ('bBitResolution', 1), ('bSamFreqType', 1),
+                    ('tSamFreq', 3), ]
 
 
     def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bFormatType, bNrChannels, bSubframeSize,
-                 bBitResolution, bSamFreqType, parent_id = None):
+                 bBitResolution, bSamFreqType, tSamFreq, parent_id = None):
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -153,6 +154,7 @@ class TypeIFormatTypeDescriptor(OrmClassBase):
         self.bSubframeSize = bSubframeSize
         self.bBitResolution = bBitResolution
         self.bSamFreqType = bSamFreqType
+        self.tSamFreq = tSamFreq
 
 
 

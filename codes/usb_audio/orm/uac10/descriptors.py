@@ -89,7 +89,7 @@ class ClassSpecificAsInterfaceDescriptor(OrmClassBase):
 
 class ClassSpecificAsIsochronousAudioDataEndpointDescriptor(OrmClassBase):
     fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bmAttributes', 1),
-                    ('bLockDelayUnits', 1), ('wLockDelay', 0), ]
+                    ('bLockDelayUnits', 1), ('wLockDelay', 2), ]
 
 
     def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bmAttributes, bLockDelayUnits, wLockDelay,

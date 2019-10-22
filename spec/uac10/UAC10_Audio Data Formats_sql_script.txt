@@ -69,7 +69,10 @@ INSERT INTO format_type_codes (
     value)
 Values
 
-('FORMAT_TYPE_UNDEFINED FORMAT_TYPE_I FORMAT_TYPE_II FORMAT_TYPE_II', '00 01 02 03');
+('FORMAT_TYPE_UNDEFINED', '00'),
+('FORMAT_TYPE_I', '01'),
+('FORMAT_TYPE_II', '02'),
+('FORMAT_TYPE_II', '03');
 
 ----------------------------------------------------------
 PRAGMA foreign_keys = off;
