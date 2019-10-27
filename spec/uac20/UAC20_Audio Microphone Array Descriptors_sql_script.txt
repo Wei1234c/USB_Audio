@@ -1,0 +1,27 @@
+"----------------------------------------------------------
+PRAGMA foreign_keys = off;
+DROP TABLE IF EXISTS microphone_array_geometry_descriptor;
+CREATE TABLE microphone_array_geometry_descriptor (
+    id INTEGER PRIMARY KEY,
+    parent_id INTEGER,
+    guidMicArrayID VARCHAR(32),
+    wDescriptorLength VARCHAR(4),
+    wVersion VARCHAR(4),
+    wMicArrayType VARCHAR(4),
+    wWorkVertAngBeg VARCHAR(4),
+    wWorkVertAngEnd VARCHAR(4),
+    wWorkHorAngBeg VARCHAR(4),
+    wWorkHorAngEnd VARCHAR(4),
+    wWorkFreqBandLo VARCHAR(4),
+    wWorkFreqBandHi VARCHAR(4),
+    wNumberOfMics VARCHAR(4),
+    wMicrophoneType_0_ VARCHAR(4),
+    wXCoordinate_0_ VARCHAR(4),
+    wYCoordinate_0_ VARCHAR(4),
+    wZCoordinate_0_ VARCHAR(4),
+    wMicVertAngle_0_ VARCHAR(4),
+    wMicHorAngle_0_ VARCHAR(4));
+PRAGMA foreign_keys = on;
+
+
+"

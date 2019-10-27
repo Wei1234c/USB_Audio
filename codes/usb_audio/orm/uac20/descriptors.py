@@ -520,6 +520,39 @@ class LeftGroupClusterDescriptor(OrmClassBase):
 
 
 
+class MicrophoneArrayGeometryDescriptor(OrmClassBase):
+    fields_sizes = [('guidMicArrayID', 16), ('wDescriptorLength', 2), ('wVersion', 2), ('wMicArrayType', 2),
+                    ('wWorkVertAngBeg', 2), ('wWorkVertAngEnd', 2), ('wWorkHorAngBeg', 2), ('wWorkHorAngEnd', 2),
+                    ('wWorkFreqBandLo', 2), ('wWorkFreqBandHi', 2), ('wNumberOfMics', 2), ('wMicrophoneType_0_', 2),
+                    ('wXCoordinate_0_', 2), ('wYCoordinate_0_', 2), ('wZCoordinate_0_', 2), ('wMicVertAngle_0_', 2),
+                    ('wMicHorAngle_0_', 2), ]
+
+
+    def __init__(self, guidMicArrayID, wDescriptorLength, wVersion, wMicArrayType, wWorkVertAngBeg, wWorkVertAngEnd,
+                 wWorkHorAngBeg, wWorkHorAngEnd, wWorkFreqBandLo, wWorkFreqBandHi, wNumberOfMics, wMicrophoneType_0_,
+                 wXCoordinate_0_, wYCoordinate_0_, wZCoordinate_0_, wMicVertAngle_0_, wMicHorAngle_0_,
+                 parent_id = None):
+        self.parent_id = parent_id
+        self.guidMicArrayID = guidMicArrayID
+        self.wDescriptorLength = wDescriptorLength
+        self.wVersion = wVersion
+        self.wMicArrayType = wMicArrayType
+        self.wWorkVertAngBeg = wWorkVertAngBeg
+        self.wWorkVertAngEnd = wWorkVertAngEnd
+        self.wWorkHorAngBeg = wWorkHorAngBeg
+        self.wWorkHorAngEnd = wWorkHorAngEnd
+        self.wWorkFreqBandLo = wWorkFreqBandLo
+        self.wWorkFreqBandHi = wWorkFreqBandHi
+        self.wNumberOfMics = wNumberOfMics
+        self.wMicrophoneType_0_ = wMicrophoneType_0_
+        self.wXCoordinate_0_ = wXCoordinate_0_
+        self.wYCoordinate_0_ = wYCoordinate_0_
+        self.wZCoordinate_0_ = wZCoordinate_0_
+        self.wMicVertAngle_0_ = wMicVertAngle_0_
+        self.wMicHorAngle_0_ = wMicHorAngle_0_
+
+
+
 class MixerUnitDescriptor(OrmClassBase):
     fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bNrInPins', 1),
                     ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('bNrChannels', 1), ('bmChannelConfig', 4),

@@ -1,6 +1,8 @@
 from array import array
 
+from orm.tools import AttrDict
 from universal_serial_bus import Endpoint
+from universal_serial_bus.legacy import ENDPOINT
 from universal_serial_bus.orm.usb20.descriptors import *
 from .descriptors import *
 from .formats.descriptors import *
@@ -9,6 +11,9 @@ from .. import UACdevice, AUDIO_CLASS_SPECIFIC_REQUEST_CODE
 
 int_eq_hex = OrmClassBase.int_eq_hex
 int_to_hex = OrmClassBase.int_to_hex
+byte_array_to_hex = OrmClassBase.byte_array_to_hex
+byte_array_to_int = OrmClassBase.byte_array_to_int
+
 INTERRUPT_DATA_MESSAGE_LENGTH = 6
 
 
@@ -74,6 +79,7 @@ class InterruptDataMessage:
 class Endpoint(Endpoint):
 
     def get_interrupt_message(self):
+        assert self.transfer_type == ENDPOINT.TRANSFER_TYPE.INTERRUPT, 'Must be an interrupt endpoint.'
         byte_array = self.read(INTERRUPT_DATA_MESSAGE_LENGTH)
         return InterruptDataMessage(byte_array)
 
@@ -164,3 +170,80 @@ class UACdevice(UACdevice):
                 _class = _classes[int_to_hex(descriptor[2]).upper()]
 
         return _class, intf_type
+
+
+
+class MicrophoneArrayGeometry(MicrophoneArrayGeometryDescriptor):
+    MIC_ARRAY_TYPE = AttrDict({'Linear': 0x00, 'Planar': 0x01, 'Dimensional': 0x02, 'Reserved': 0x03})
+    MICROPHONE_TYPE = AttrDict({'OmniDirectional': 0x00,
+                                'SubCardioid'    : 0x01,
+                                'Cardioid'       : 0x02,
+                                'SuperCardioid'  : 0x03,
+                                'HyperCardioid'  : 0x04,
+                                'Shaped'         : 0x05,
+                                'VendorDefined'  : 0x00F})
+
+
+    @classmethod
+    def from_byte_array(cls, byte_array, parent_id = None):
+        geo = super().from_byte_array(byte_array, parent_id)
+        n_mics = geo.number_of_mics
+        geo.number_of_mics = 0
+        
+        for i in range(n_mics):
+            idx_base = 36 + i * 2 * 6
+            params = dict(wMicrophoneType = byte_array_to_int(byte_array[idx_base + 0:idx_base + 2], signed = True),
+                          wXCoordinate = byte_array_to_int(byte_array[idx_base + 2:idx_base + 4], signed = True),
+                          wYCoordinate = byte_array_to_int(byte_array[idx_base + 4:idx_base + 6], signed = True),
+                          wZCoordinate = byte_array_to_int(byte_array[idx_base + 6:idx_base + 8], signed = True),
+                          wMicVertAngle = byte_array_to_int(byte_array[idx_base + 8:idx_base + 10], signed = True),
+                          wMicHorAngle = byte_array_to_int(byte_array[idx_base + 10:idx_base + 12], signed = True))
+            geo.add_mic(params)
+
+        return geo
+
+
+    @classmethod
+    def degree_to_angle(cls, degree):
+        return int(degree / 180 * 31416)
+
+
+    def _refresh_length(self):
+        self.set_attr_hex_value_from_int('wDescriptorLength', self.length)
+
+
+    def set_guid(self, guid):
+        self.set_attr_hex_value_from_int('guidMicArrayID', guid)
+
+
+    def add_mic(self, params = dict(wMicrophoneType = MICROPHONE_TYPE['OmniDirectional'],
+                                    wXCoordinate = 0,
+                                    wYCoordinate = 0,
+                                    wZCoordinate = 0,
+                                    wMicVertAngle = 0,
+                                    wMicHorAngle = 0)):
+        for attr_name in ['wMicrophoneType', 'wXCoordinate', 'wYCoordinate',
+                          'wZCoordinate', 'wMicVertAngle', 'wMicHorAngle']:
+            length = self.get_size_of_field('{}_0_'.format(attr_name))
+            self.setattr(attr_name = '{}_{}_'.format(attr_name, self.number_of_mics),
+                         attr_value = self.int_to_hex(params[attr_name], length = length, signed = True),
+                         size = length,
+                         idx = None)
+
+        self.number_of_mics += 1
+        self._refresh_length()
+
+
+    @property
+    def bLength(self):
+        return self.wDescriptorLength
+
+
+    @property
+    def number_of_mics(self):
+        return self.hex_to_int(self.wNumberOfMics)
+
+
+    @number_of_mics.setter
+    def number_of_mics(self, number_of_mics):
+        self.set_attr_hex_value_from_int('wNumberOfMics', number_of_mics)

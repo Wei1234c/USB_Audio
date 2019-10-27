@@ -9,14 +9,12 @@ def map_db_objects(db_url):
     return engine, meta, tables, session
 
 
-
 class AssociatedInterfacesDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bInterfaceNr', 1),
-                    ('Association_specific', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bInterfaceNr', 1), ('Association_specific', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bInterfaceNr, Association_specific,
-                 parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bInterfaceNr, Association_specific, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -25,15 +23,12 @@ class AssociatedInterfacesDescriptor(OrmClassBase):
         self.Association_specific = Association_specific
 
 
-
 class ChorusProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -50,14 +45,12 @@ class ChorusProcessingUnitDescriptor(OrmClassBase):
         self.iProcessing = iProcessing
 
 
-
 class ClassSpecificAcInterfaceHeaderDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bcdADC', 2),
-                    ('wTotalLength', 2), ('bInCollection', 1), ('baInterfaceNr_1_', 1), ('baInterfaceNr_n_', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bcdADC', 2), ('wTotalLength', 2), ('bInCollection', 1), ('baInterfaceNr_1_', 1), ('baInterfaceNr_n_', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bcdADC, wTotalLength, bInCollection,
-                 baInterfaceNr_1_, baInterfaceNr_n_, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bcdADC, wTotalLength, bInCollection, baInterfaceNr_1_, baInterfaceNr_n_, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -69,14 +62,12 @@ class ClassSpecificAcInterfaceHeaderDescriptor(OrmClassBase):
         self.baInterfaceNr_n_ = baInterfaceNr_n_
 
 
-
 class ClassSpecificAsInterfaceDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalLink', 1),
-                    ('bDelay', 1), ('wFormatTag', 2), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalLink', 1), ('bDelay', 1), ('wFormatTag', 2),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalLink, bDelay, wFormatTag,
-                 parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalLink, bDelay, wFormatTag, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -86,14 +77,12 @@ class ClassSpecificAsInterfaceDescriptor(OrmClassBase):
         self.wFormatTag = wFormatTag
 
 
-
 class ClassSpecificAsIsochronousAudioDataEndpointDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bmAttributes', 1),
-                    ('bLockDelayUnits', 1), ('wLockDelay', 2), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bmAttributes', 1), ('bLockDelayUnits', 1), ('wLockDelay', 2),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bmAttributes, bLockDelayUnits, wLockDelay,
-                 parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bmAttributes, bLockDelayUnits, wLockDelay, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -103,17 +92,12 @@ class ClassSpecificAsIsochronousAudioDataEndpointDescriptor(OrmClassBase):
         self.wLockDelay = wLockDelay
 
 
-
 class CommonPartOfTheProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1),
-                    ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1),
-                    ('bmControls', 1), ('iProcessing', 1), ('Process_specific', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ('Process_specific', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, baSourceID_1_,
-                 baSourceID__p_, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing,
-                 Process_specific, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, baSourceID_1_, baSourceID__p_, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, Process_specific, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -132,17 +116,12 @@ class CommonPartOfTheProcessingUnitDescriptor(OrmClassBase):
         self.Process_specific = Process_specific
 
 
-
 class DolbyPrologicProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ('bNrModes', 1),
-                    ('waModes_1_', 2), ('waModes_m_', 2), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ('bNrModes', 1), ('waModes_1_', 2), ('waModes_m_', 2),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, bNrModes,
-                 waModes_1_, waModes_m_, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, bNrModes, waModes_1_, waModes_m_, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -162,15 +141,12 @@ class DolbyPrologicProcessingUnitDescriptor(OrmClassBase):
         self.waModes_m_ = waModes_m_
 
 
-
 class DynamicRangeCompressorProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -187,17 +163,12 @@ class DynamicRangeCompressorProcessingUnitDescriptor(OrmClassBase):
         self.iProcessing = iProcessing
 
 
-
 class ExtensionUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wExtensionCode', 2), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1),
-                    ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1),
-                    ('bmControls', 1), ('iExtension', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wExtensionCode', 2), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iExtension', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wExtensionCode, bNrInPins, baSourceID_1_,
-                 baSourceID__p_, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iExtension,
-                 parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wExtensionCode, bNrInPins, baSourceID_1_, baSourceID__p_, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iExtension, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -215,14 +186,12 @@ class ExtensionUnitDescriptor(OrmClassBase):
         self.iExtension = iExtension
 
 
-
 class FeatureUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bSourceID', 1),
-                    ('bControlSize', 1), ('bmaControls_0_', 1), ('iFeature', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bSourceID', 1), ('bControlSize', 1), ('bmaControls_0_', 1), ('iFeature', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bSourceID, bControlSize, bmaControls_0_,
-                 iFeature, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bSourceID, bControlSize, bmaControls_0_, iFeature, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -234,15 +203,12 @@ class FeatureUnitDescriptor(OrmClassBase):
         self.iFeature = iFeature
 
 
-
 class InputTerminalDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalID', 1),
-                    ('wTerminalType', 2), ('bAssocTerminal', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('iTerminal', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalID', 1), ('wTerminalType', 2), ('bAssocTerminal', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('iTerminal', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalID, wTerminalType, bAssocTerminal,
-                 bNrChannels, wChannelConfig, iChannelNames, iTerminal, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalID, wTerminalType, bAssocTerminal, bNrChannels, wChannelConfig, iChannelNames, iTerminal, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -256,15 +222,38 @@ class InputTerminalDescriptor(OrmClassBase):
         self.iTerminal = iTerminal
 
 
+class MicrophoneArrayGeometryDescriptor(OrmClassBase):
+
+    fields_sizes = [('guidMicArrayID', 16), ('wDescriptorLength', 2), ('wVersion', 2), ('wMicArrayType', 2), ('wWorkVertAngBeg', 2), ('wWorkVertAngEnd', 2), ('wWorkHorAngBeg', 2), ('wWorkHorAngEnd', 2), ('wWorkFreqBandLo', 2), ('wWorkFreqBandHi', 2), ('wNumberOfMics', 2), ('wMicrophoneType_0_', 2), ('wXCoordinate_0_', 2), ('wYCoordinate_0_', 2), ('wZCoordinate_0_', 2), ('wMicVertAngle_0_', 2), ('wMicHorAngle_0_', 2),]
+
+    def __init__(self, guidMicArrayID, wDescriptorLength, wVersion, wMicArrayType, wWorkVertAngBeg, wWorkVertAngEnd, wWorkHorAngBeg, wWorkHorAngEnd, wWorkFreqBandLo, wWorkFreqBandHi, wNumberOfMics, wMicrophoneType_0_, wXCoordinate_0_, wYCoordinate_0_, wZCoordinate_0_, wMicVertAngle_0_, wMicHorAngle_0_, parent_id = None):
+
+        self.parent_id = parent_id
+        self.guidMicArrayID = guidMicArrayID
+        self.wDescriptorLength = wDescriptorLength
+        self.wVersion = wVersion
+        self.wMicArrayType = wMicArrayType
+        self.wWorkVertAngBeg = wWorkVertAngBeg
+        self.wWorkVertAngEnd = wWorkVertAngEnd
+        self.wWorkHorAngBeg = wWorkHorAngBeg
+        self.wWorkHorAngEnd = wWorkHorAngEnd
+        self.wWorkFreqBandLo = wWorkFreqBandLo
+        self.wWorkFreqBandHi = wWorkFreqBandHi
+        self.wNumberOfMics = wNumberOfMics
+        self.wMicrophoneType_0_ = wMicrophoneType_0_
+        self.wXCoordinate_0_ = wXCoordinate_0_
+        self.wYCoordinate_0_ = wYCoordinate_0_
+        self.wZCoordinate_0_ = wZCoordinate_0_
+        self.wMicVertAngle_0_ = wMicVertAngle_0_
+        self.wMicHorAngle_0_ = wMicHorAngle_0_
+
 
 class MixerUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bNrInPins', 1),
-                    ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bmControls', 1), ('iMixer', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bmControls', 1), ('iMixer', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bNrInPins, baSourceID_1_, baSourceID__p_,
-                 bNrChannels, wChannelConfig, iChannelNames, bmControls, iMixer, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bNrInPins, baSourceID_1_, baSourceID__p_, bNrChannels, wChannelConfig, iChannelNames, bmControls, iMixer, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -280,14 +269,12 @@ class MixerUnitDescriptor(OrmClassBase):
         self.iMixer = iMixer
 
 
-
 class OutputTerminalDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalID', 1),
-                    ('wTerminalType', 2), ('bAssocTerminal', 1), ('bSourceID', 1), ('iTerminal', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bTerminalID', 1), ('wTerminalType', 2), ('bAssocTerminal', 1), ('bSourceID', 1), ('iTerminal', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalID, wTerminalType, bAssocTerminal,
-                 bSourceID, iTerminal, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bTerminalID, wTerminalType, bAssocTerminal, bSourceID, iTerminal, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -299,15 +286,12 @@ class OutputTerminalDescriptor(OrmClassBase):
         self.iTerminal = iTerminal
 
 
-
 class ReverberationProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -324,14 +308,12 @@ class ReverberationProcessingUnitDescriptor(OrmClassBase):
         self.iProcessing = iProcessing
 
 
-
 class SelectorUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bNrInPins', 1),
-                    ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('iSelector', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('bNrInPins', 1), ('baSourceID_1_', 1), ('baSourceID__p_', 1), ('iSelector', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bNrInPins, baSourceID_1_, baSourceID__p_,
-                 iSelector, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, bNrInPins, baSourceID_1_, baSourceID__p_, iSelector, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -343,15 +325,12 @@ class SelectorUnitDescriptor(OrmClassBase):
         self.iSelector = iSelector
 
 
-
 class StandardAcInterfaceDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bInterfaceNumber', 1), ('bAlternateSetting', 1),
-                    ('bNumEndpoints', 1), ('bInterfaceClass', 1), ('bInterfaceSubClass', 1), ('bInterfaceProtocol', 1),
-                    ('iInterface', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bInterfaceNumber', 1), ('bAlternateSetting', 1), ('bNumEndpoints', 1), ('bInterfaceClass', 1), ('bInterfaceSubClass', 1), ('bInterfaceProtocol', 1), ('iInterface', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass,
-                 bInterfaceSubClass, bInterfaceProtocol, iInterface, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass, bInterfaceSubClass, bInterfaceProtocol, iInterface, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -362,16 +341,14 @@ class StandardAcInterfaceDescriptor(OrmClassBase):
         self.bInterfaceSubClass = bInterfaceSubClass
         self.bInterfaceProtocol = bInterfaceProtocol
         self.iInterface = iInterface
-
 
 
 class StandardAcInterruptEndpointDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1),
-                    ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1), ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh,
-                 bSynchAddress, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh, bSynchAddress, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -383,15 +360,12 @@ class StandardAcInterruptEndpointDescriptor(OrmClassBase):
         self.bSynchAddress = bSynchAddress
 
 
-
 class StandardAsInterfaceDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bInterfaceNumber', 1), ('bAlternateSetting', 1),
-                    ('bNumEndpoints', 1), ('bInterfaceClass', 1), ('bInterfaceSubClass', 1), ('bInterfaceProtocol', 1),
-                    ('iInterface', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bInterfaceNumber', 1), ('bAlternateSetting', 1), ('bNumEndpoints', 1), ('bInterfaceClass', 1), ('bInterfaceSubClass', 1), ('bInterfaceProtocol', 1), ('iInterface', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass,
-                 bInterfaceSubClass, bInterfaceProtocol, iInterface, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bInterfaceNumber, bAlternateSetting, bNumEndpoints, bInterfaceClass, bInterfaceSubClass, bInterfaceProtocol, iInterface, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -404,14 +378,12 @@ class StandardAsInterfaceDescriptor(OrmClassBase):
         self.iInterface = iInterface
 
 
-
 class StandardAsIsochronousAudioDataEndpointDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1),
-                    ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1), ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh,
-                 bSynchAddress, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh, bSynchAddress, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -421,16 +393,14 @@ class StandardAsIsochronousAudioDataEndpointDescriptor(OrmClassBase):
         self.bInterval = bInterval
         self.bRefresh = bRefresh
         self.bSynchAddress = bSynchAddress
-
 
 
 class StandardAsIsochronousSynchEndpointDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1),
-                    ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bEndpointAddress', 1), ('bmAttributes', 1), ('wMaxPacketSize', 2), ('bInterval', 1), ('bRefresh', 1), ('bSynchAddress', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh,
-                 bSynchAddress, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bEndpointAddress, bmAttributes, wMaxPacketSize, bInterval, bRefresh, bSynchAddress, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -442,15 +412,12 @@ class StandardAsIsochronousSynchEndpointDescriptor(OrmClassBase):
         self.bSynchAddress = bSynchAddress
 
 
-
 class ThreeDStereoExtenderProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
@@ -467,17 +434,12 @@ class ThreeDStereoExtenderProcessingUnitDescriptor(OrmClassBase):
         self.iProcessing = iProcessing
 
 
-
 class UpDownMixProcessingUnitDescriptor(OrmClassBase):
-    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1),
-                    ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2),
-                    ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ('bNrModes', 1),
-                    ('waModes_1_', 2), ('waModes_m_', 2), ]
 
+    fields_sizes = [('bLength', 1), ('bDescriptorType', 1), ('bDescriptorSubtype', 1), ('bUnitID', 1), ('wProcessType', 2), ('bNrInPins', 1), ('bSourceID', 1), ('bNrChannels', 1), ('wChannelConfig', 2), ('iChannelNames', 1), ('bControlSize', 1), ('bmControls', 1), ('iProcessing', 1), ('bNrModes', 1), ('waModes_1_', 2), ('waModes_m_', 2),]
 
-    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID,
-                 bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, bNrModes,
-                 waModes_1_, waModes_m_, parent_id = None):
+    def __init__(self, bLength, bDescriptorType, bDescriptorSubtype, bUnitID, wProcessType, bNrInPins, bSourceID, bNrChannels, wChannelConfig, iChannelNames, bControlSize, bmControls, iProcessing, bNrModes, waModes_1_, waModes_m_, parent_id = None):
+
         self.parent_id = parent_id
         self.bLength = bLength
         self.bDescriptorType = bDescriptorType
