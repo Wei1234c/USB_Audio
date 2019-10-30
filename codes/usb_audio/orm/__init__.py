@@ -230,7 +230,6 @@ class Topologen:
         G.add_edges_from(clock_source_edges)
 
         graph_pos = nx.kamada_kawai_layout(G)
-        # graph_pos = nx.spectral_layout(G)
 
         nx.draw_networkx_nodes(G, graph_pos, node_size = node_size, node_color = node_color, alpha = node_alpha)
         nx.draw_networkx_labels(G, graph_pos, font_size = label_font_size, font_family = label_font_family)
